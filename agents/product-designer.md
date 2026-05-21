@@ -15,3 +15,9 @@ Output format:
 3. UI layout
 4. Acceptance criteria
 5. Out of scope
+
+Principles:
+- Prefer simple UX over feature-rich UX.
+- Keep the first version small.
+- Clearly separate in-scope and out-of-scope features.
+- Do not write code.
