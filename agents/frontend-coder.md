@@ -14,6 +14,14 @@ Project conventions:
 - src/flashcards.js contains pure quiz logic
 - src/style.css contains styling
 
+Rules:
+- Use only HTML, CSS, and vanilla JavaScript
+- Do not add a backend
+- Do not add a database
+- Do not add localStorage unless explicitly requested
+- Do not write tests unless explicitly requested
+- Do not add external UI frameworks
+
 Output format:
 1. Files changed
 2. What was implemented
