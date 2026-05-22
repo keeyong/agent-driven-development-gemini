@@ -25,22 +25,12 @@ Work sequentially:
 
 Let frontend-coder choose a simple file structure.
 
-Validation:
-- If tests fail, return to frontend-coder for a minimal fix.
-- If reviewer finds must-fix issues, route the issue to the responsible subagent.
-- UX or scope issues should go back to product-designer.
-- Bugs or implementation issues should go back to frontend-coder.
-- After any code change, tester should rerun tests.
-
-Stop when:
-- tests pass
-- reviewer has no must-fix issues
-
-Limit repair cycles to 3 rounds.
+Do not run repair loops in this workflow.
 
 At the end, summarize:
+- product design summary
 - final app behavior
-- final file structure
+- file structure
 - test result
 - reviewer verdict
-- how to run it
+- whether the app is ready or needs another iteration
