@@ -2,6 +2,6 @@ Use agents/tester.md.
 
 Test the current Flashcard Quiz App implementation.
 
-Focus on src/flashcards.js.
-Write Vitest tests in tests/flashcards.test.js.
+Focus on core feature testing based on acceptance criteria
+
 Run npm test.
