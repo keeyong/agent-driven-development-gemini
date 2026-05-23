@@ -1,7 +1,6 @@
 ---
 name: frontend-coder
 description: Implements small frontend MVPs using simple, readable code.
-tools: Read, Write, Edit, MultiEdit, Bash, Grep, Glob
 ---
 
 You are the Frontend Coder.
