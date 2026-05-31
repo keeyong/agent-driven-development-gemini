@@ -1,12 +1,12 @@
 # Dolly-15k FAISS RAG System
 
-HuggingFace의 **Databricks Dolly-15k** 데이터셋과 **FAISS** 벡터 데이터베이스를 활용하여 구축한 RAG(Retrieval-Augmented Generation) 시스템입니다. 베이스 LLM으로는 **Google Flan-T5 XXL**을 사용하여 도메인 지식 기반의 답변을 생성합니다.
+HuggingFace의 **Databricks Dolly-15k** 데이터셋과 **FAISS** 벡터 데이터베이스를 활용하여 구축한 RAG(Retrieval-Augmented Generation) 시스템입니다. 베이스 LLM으로는 **Meta Llama-3.2-1B-Instruct**를 사용하여 도메인 지식 기반의 답변을 생성합니다.
 
 ## 🌟 주요 특징
 - **데이터셋**: `databricks/databricks-dolly-15k` (Instruction, Context 기반 지식 추출)
 - **Vector DB**: `FAISS` (고속 유사도 검색)
-- **Embeddings**: `sentence-transformers/all-mpnet-base-v2`
-- **LLM**: `google/flan-t5-xxl` (HuggingFace Inference API 사용)
+- **Embeddings**: `sentence-transformers/all-mpnet-base-v2` (로컬 가속 임베딩)
+- **LLM**: `meta-llama/Llama-3.2-1B-Instruct` (HuggingFace Router API 사용)
 - **Framework**: `LangChain` (LCEL 기반의 선언적 파이프라인)
 
 ## 📋 사전 요구 사항
@@ -60,9 +60,8 @@ python rag_faiss.py
 4. **Generation**: `meta-llama/Llama-3.2-1B-Instruct` 모델(API)을 사용하여 최종 답변을 생성합니다.
 
 ## 💡 참고 사항
-- `flan-t5-xxl` 모델은 크기가 커서 무료 API 환경에서 호출이 제한될 수 있습니다. 만약 오류가 발생한다면 `rag_faiss.py` 파일 내의 `model_id`를 아래 모델 중 하나로 변경하여 테스트해 보세요:
-  - `google/flan-t5-large` (안정적)
-  - `google/gemma-2-2b-it` (최신 경량 모델)
+- 본 시스템은 HuggingFace의 무료 서버리스 라우터 API(`router.huggingface.co/v1`)를 사용합니다. 무료 티어에서 가장 응답성이 좋고 안정적인 `Llama-3.2-1B-Instruct` 모델을 기본으로 채택하였습니다.
+- 성능 향상을 위해 3B 이상의 모델로 변경하고 싶으시다면, 유료 API(PRO)를 구독하시거나 로컬 GPU를 활용한 다운로드 방식으로 코드를 변경하여 사용하실 수 있습니다.
 
 ## 📄 파일 구성
 - `rag_faiss.py`: 메인 소스 코드
