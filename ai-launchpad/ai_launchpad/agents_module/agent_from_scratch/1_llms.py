@@ -16,6 +16,8 @@ from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 import os
 
+MODEL = "gemini-3.1-flash-lite"
+
 load_dotenv()
 
 client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
@@ -26,7 +28,7 @@ client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
 
 # Generate a response from the model
 response = client.models.generate_content(
-    model="gemma-4-31b-it",
+    model=MODEL,
     contents="Hello world.",
 )
 
@@ -36,7 +38,7 @@ print(response.text)
 # Adding a system prompt
 print("== After adding a system prompt ==")
 response = client.models.generate_content(
-    model="gemma-4-31b-it",
+    model=MODEL,
     contents="Hello world.",
     config=types.GenerateContentConfig(
         system_instruction="Your name is Aura. Always respond like a pirate.",
@@ -58,7 +60,7 @@ class SupportTicket(BaseModel):
 
 print("== Using structured outputs ==")
 response = client.models.generate_content(
-    model="gemma-4-31b-it",
+    model=MODEL,
     contents="I can't login to my account.",
     config=types.GenerateContentConfig(
         response_mime_type="application/json",
@@ -76,7 +78,7 @@ print(parsed)
 
 # Generate a response and stream back the results
 stream = client.models.generate_content_stream(
-    model="gemma-4-31b-it",
+    model=MODEL,
     contents="Hello world.",
     config=types.GenerateContentConfig(
         system_instruction="Your name is Aura. Always respond like a pirate.",
