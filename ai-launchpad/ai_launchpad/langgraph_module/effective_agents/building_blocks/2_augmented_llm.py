@@ -39,7 +39,7 @@ def extract_text(content) -> str:
 load_dotenv()
 
 llm = ChatGoogleGenerativeAI(
-    model="gemma-4-31b-it",
+    model="gemini-3.1-flash-lite",
     temperature=0.1,
 )
 
