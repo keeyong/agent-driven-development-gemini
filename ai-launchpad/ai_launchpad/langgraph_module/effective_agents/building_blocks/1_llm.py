@@ -22,7 +22,7 @@ load_dotenv()
 # LangChain의 Google Gemini 통합 — ChatOpenAI와 동일한 인터페이스를 사용하므로
 # LangGraph 코드를 거의 수정 없이 모델만 바꿀 수 있음
 llm = ChatGoogleGenerativeAI(
-    model="gemma-4-31b-it",
+    model="gemini-3.1-flash-lite",
     temperature=0.1,
 )
 
