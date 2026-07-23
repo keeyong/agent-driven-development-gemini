@@ -41,7 +41,7 @@ import os
 load_dotenv()
 
 client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
-MODEL = "gemma-4-31b-it"
+MODEL = "gemini-3.1-flash-lite"
 
 
 ##########################################
