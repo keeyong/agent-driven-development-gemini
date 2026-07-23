@@ -197,31 +197,21 @@ print(response.candidates[0].content)
 # 에이전트가 이전 대화에서 메모리를 저장했다고 가정
 manage_memories(action="create", id=1, content="The user's name is Kenny.")
 manage_memories(action="create", id=2, content="Kenny's wife's name is Nancy.")
-print("\n[Part 3] 저장된 메모리:", memories)
+# 이전 대화 기록은 전달하지 않고 새로운 대화 시작
+question = "Do you remember my wife's name?"
 
-# 새 대화 시작 - 이전 대화 내용(contents)은 없지만 메모리는 유지됨
-contents = [
-    types.Content(
-        role="user",
-        parts=[types.Part(text="Do you remember my wife's name?")],
-    ),
-]
+# Python 함수를 직접 등록하면 SDK가
+# 도구 호출 → 함수 실행 → 결과 전달 → 최종 답변 생성을 자동 처리
+memory_config = types.GenerateContentConfig(
+    system_instruction=SYSTEM_INSTRUCTION,
+    tools=[manage_memories, get_memories],
+)
 
-# 500 에러는 일시적인 서버 오류일 수 있으므로 최대 3회 재시도
-import time
-for attempt in range(3):
-    try:
-        response = client.models.generate_content(
-            model=MODEL,
-            contents=contents,
-            config=config,
-        )
-        break
-    except Exception as e:
-        print(f"[재시도 {attempt+1}/3] 오류: {e}")
-        if attempt < 2:
-            time.sleep(3)
+response = client.models.generate_content(
+    model=MODEL,
+    contents=question,
+    config=memory_config,
+)
 
-# 모델이 직접 답하지 않고 get_memories를 먼저 호출해서 저장된 기억을 확인함
-print("\n[Part 3] 두 번째 대화 - 모델의 도구 호출 요청:")
-print(response.candidates[0].content)
+print("\n[Part 3] 모델의 최종 답변:")
+print(response.text)
