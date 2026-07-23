@@ -55,7 +55,7 @@ import os
 load_dotenv()
 
 client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
-MODEL = "gemma-4-31b-it"
+MODEL = "gemini-3.1-flash-lite"
 TODAY = date.today().isoformat()  # 예: "2026-06-01"
 
 ##########################################
@@ -66,7 +66,7 @@ TODAY = date.today().isoformat()  # 예: "2026-06-01"
 # 단, Google Search 내장 도구는 Gemini 모델에서만 지원되고 Gemma에서는 안 됨.
 
 response = client.models.generate_content(
-    model="gemini-2.5-flash-lite",
+    model=MODEL,
     contents="What was one positive news story from today?",
     config=types.GenerateContentConfig(
         tools=[types.Tool(google_search=types.GoogleSearch())],  # 내장 Google 검색 도구 활성화
