@@ -33,7 +33,7 @@ import os
 load_dotenv()
 
 client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
-MODEL = "gemini-2.5-flash"
+MODEL = "gemini-3.1-flash-lite"
 
 config = types.GenerateContentConfig(
     system_instruction="Your name is Aura. You are a great friend and love banter. Always keep the conversation going and light-hearted.",
