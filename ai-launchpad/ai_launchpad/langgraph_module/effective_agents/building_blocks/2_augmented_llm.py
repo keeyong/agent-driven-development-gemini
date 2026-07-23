@@ -99,20 +99,17 @@ graph = builder.compile()
 user_input = "Hello! I'm Keeyong."
 response = graph.invoke(input=AgentState(messages=[HumanMessage(content=user_input)]))
 print(f"나: {user_input}")
-for msg in response["messages"]:
-    if msg.content:
-        print(f"LLM: {extract_text(msg.content)}")
+last_message = response["messages"][-1]
+print(f"LLM: {extract_text(last_message.content)}")
 
 # 그래프 호출 2: 이름 질문 — 각 graph.invoke()는 독립적이므로 아직 기억 못함
 user_input = "What's my name?"
 response = graph.invoke(input=AgentState(messages=[HumanMessage(content=user_input)]))
 print(f"\n나: {user_input}")
-for msg in response["messages"]:
-    if msg.content:
-        print(f"LLM: {extract_text(msg.content)}")
+last_message = response["messages"][-1]
+print(f"LLM: {extract_text(last_message.content)}")
+
 print("⚠️  각 graph.invoke()는 독립적 — MemorySaver 없이는 기억 못합니다")
-
-
 #################################
 # 3. MemorySaver — 영구 상태 저장
 #################################
@@ -127,18 +124,16 @@ config = RunnableConfig(configurable={"thread_id": "session-1"})
 user_input = "Hello! I'm Keeyong."
 response = graph.invoke(input=AgentState(messages=[HumanMessage(content=user_input)]), config=config)
 print(f"나: {user_input}")
-for msg in response["messages"]:
-    if msg.content:
-        print(f"LLM: {extract_text(msg.content)}")
+last_message = response["messages"][-1]
+print(f"LLM: {extract_text(last_message.content)}")
 
 user_input = "What's my name?"
 response = graph.invoke(input=AgentState(messages=[HumanMessage(content=user_input)]), config=config)
 print(f"\n나: {user_input}")
-for msg in response["messages"]:
-    if msg.content:
-        print(f"LLM: {extract_text(msg.content)}")
-print("✅ 같은 thread_id로 호출하면 이전 대화를 기억합니다!")
+last_message = response["messages"][-1]
+print(f"LLM: {extract_text(last_message.content)}")
 
+print("✅ 같은 thread_id로 호출하면 이전 대화를 기억합니다!")
 
 #################################
 # 4. 도구 (Tools) 추가
