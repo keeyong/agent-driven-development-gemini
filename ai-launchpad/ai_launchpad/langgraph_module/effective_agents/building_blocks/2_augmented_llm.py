@@ -201,6 +201,7 @@ builder.add_node(agent_node)
 # ToolNode: 도구 호출 파싱 + 실행 + 결과 반환을 자동으로 처리
 builder.add_node("tools", ToolNode(tools))
 builder.set_entry_point("agent_node")
+# 세 번째 인자는 라우터의 리턴값에 따라 이동 노드를 매팅해주는 사전 (라우터가_반환한_값: 실제로_이동할_노드_이름)
 builder.add_conditional_edges("agent_node", agent_router, {"tools": "tools", END: END})
 builder.add_edge("tools", "agent_node")  # 도구 실행 후 다시 에이전트로
 
