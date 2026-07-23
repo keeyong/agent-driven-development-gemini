@@ -53,7 +53,7 @@ import os
 load_dotenv()
 
 client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
-MODEL = "gemma-4-31b-it"
+MODEL = "gemini-3.1-flash-lite"
 TODAY = date.today().isoformat()
 
 # 현재 파일 기준으로 knowledgebase 경로 설정
